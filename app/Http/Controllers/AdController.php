@@ -12,7 +12,6 @@ class AdController extends Controller
 
 		if(!$access->check())
 			return Response::make('Access denied', 403);
-
 		if($access->ad == null)
 			return Response::make('Server fault', 500);
 

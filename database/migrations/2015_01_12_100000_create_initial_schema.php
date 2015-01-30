@@ -7,30 +7,32 @@ class CreateInitialSchema extends Migration {
 
 	public function up()
 	{
-		Schema::create('ad_units', function($table)
-		{
-			$table->increments('id');
-			$table->integer('width');
-			$table->integer('height');
-			$table->integer('slot');
-			$table->integer('publisher_id');
-			$table->timestamps();
-		});
-
 		Schema::create('publishers', function($table)
 		{
 			$table->increments('id');
-			$table->string('name');
-			$table->integer('client');
+			$table->string('email');
+			$table->bigInteger('client_id');
+			$table->timestamps();
+		});
+
+		Schema::create('ad_units', function($table)
+		{
+			$table->bigIncrements('id');
+			$table->integer('width')->unsigned();
+			$table->integer('height')->unsigned();
+			$table->bigInteger('slot');
+			$table->integer('publisher_id')->unsigned();
+			//$table->foreign('publisher_id')->references('id')->on('publishers');
 			$table->timestamps();
 		});
 
 		Schema::create('access', function($table)
 		{
-			$table->increments('id');
+			$table->bigIncrements('id');
 			$table->string('token', 32);
 			$table->string('domain')->nullable();
-			$table->integer('ad_id');
+			$table->bigInteger('ad_unit_id')->unsigned();
+			//$table->foreign('ad_unit_id')->references('id')->on('ad_units');
 		});
 	}
 

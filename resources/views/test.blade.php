@@ -11,7 +11,7 @@
 </head>
 <body>
 	<h2>AD</h2>
-	<?php echo $adhtml; ?>
+	<pre><?php echo $adhtml; ?></pre>
 	<h2>/AD</h2>
 </body>
 </html>

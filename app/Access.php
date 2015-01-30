@@ -16,7 +16,7 @@ class Access extends Model
 
 	public function ad()
 	{
-		return $this->belongsTo('App\AdUnit', 'ad_id');
+		return $this->hasOne('App\AdUnit', 'id');
 	}
 
 	public function check()
